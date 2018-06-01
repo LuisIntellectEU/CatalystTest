@@ -1,0 +1,36 @@
+== Project Setup
+
+This project was created using https://initializr.svc.mamdev.server.lan/[CATALYST integration toolkit].
+
+=== How to run?
+
+To run your application right away, start it by running it from your IDE of choice or or use the command `mvn spring-boot:run`.
+
+You can also create a standalone executable Jar file of the project by using the `package` goal. The resulting Jar file created in the `target` directory can simply be run as any executable, e.g. `./target/demo.jar` or by running it with `java -jar ...`.
+
+=== Docker
+
+The project is using https://github.com/spotify/dockerfile-maven[spotify/dockerfile-maven] plugin.
+
+- To change the image prefix simply modify 'docker.image.prefix' property in the pom file.
+- To build and push an image run:
+```
+mvn deploy
+```
+- To just build an image run:
+```
+mvn package
+mvn dockerfile:build
+```
+
+=== Monitoring
+Monitoring is provided with Splunk log analyzer. It is receiving the app logs over TCP from Splunk forwarder.
+The logs that are logged to system.out inside a Docker container, are sent via UDP to forwarder through syslog driver
+
+- To build and run the app with Splunk monitoring:
+```
+mvn clean install
+docker-compose  up -d --build
+```
+
+- After all apps are up, open http://localhost:18000 for Splunk UI
