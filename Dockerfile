@@ -10,4 +10,4 @@ RUN mvn clean package
 FROM openjdk:8-jdk-alpine
 WORKDIR /app
 COPY --from=1 /app/target/*.jar /app
-CMD ["java","-Djava.security.egd=file:/dev/./urandom","-jar","*.jar"]
+CMD ["java","-Djava.security.egd=file:/dev/./urandom","-jar","demo-0.0.1-SNAPSHOT.jar"]
