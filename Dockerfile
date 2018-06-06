@@ -5,7 +5,7 @@ RUN git clone https://github.com/LuisIntellectEU/CatalystTest.git
 FROM maven:3.5-jdk-8-alpine
 WORKDIR /app
 COPY --from=0 /app/CatalystTest /app
-RUN mvn install
+RUN mvn clean install
 
 FROM openjdk:8-jdk-alpine
 WORKDIR /app
